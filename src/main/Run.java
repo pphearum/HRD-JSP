@@ -41,23 +41,18 @@ public class Run extends HttpServlet{
 		try{
 			switch (command) {
 			case "/getstaff.act":
-				System.out.println("List");
 				getStudentList(req, resp);
 				break;
 			case "/getclassname.act":
-				System.out.println("Get room");
 				getClassName(req,resp);
 				break;
 			case "/classfilter.act":
-				System.out.println("Filter Class");
 				getFilterClass(req, resp);
 				break;
 			case "/searchbyname.act":
-				System.out.println("Search Name");
 				getSearch(req, resp);
 				break;
 			case "/updatestatus.act":
-				System.out.println("Update status");
 				updateStatus(req, resp);
 				break;
 			}
@@ -65,6 +60,13 @@ public class Run extends HttpServlet{
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Get Student List from database and filter by search, class, and status.
+	 * @param req
+	 * @param resp
+	 * @throws Exception
+	 */
 	public void getStudentList(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		StaffDB db = new StaffDB();
 		String room = req.getParameter("room");
@@ -79,7 +81,6 @@ public class Run extends HttpServlet{
 		}
 		
 		ArrayList<Staff> staffs = null;
-		
 		if(room.equals("All Class") && status.equals("All Status")){
 			staffs = db.getList(filter);
 		}else if(room.equals("All Class") && !status.equals("All Status")){
@@ -94,10 +95,15 @@ public class Run extends HttpServlet{
 		resp.setCharacterEncoding("UTF-8");
 		
 		String staff = new Gson().toJson(staffs);
-		resp.getWriter().write(staff);
-		System.out.println(staff);  
+		resp.getWriter().write(staff);  
 	}
 	
+    /**
+     * Select Like by class name (Combo)   	
+     * @param req 
+     * @param resp
+     * @throws Exception
+     */
 	public void getFilterClass(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		ArrayList<Staff> staffs = null;
 		StaffDB db = new StaffDB();
@@ -110,7 +116,6 @@ public class Run extends HttpServlet{
 		}else{
 			filter="";
 		}
-		
 		if(room.equals("All Class") && status.equals("All Status")){
 			getStudentList(req, resp);
 			return;
@@ -126,11 +131,16 @@ public class Run extends HttpServlet{
 		resp.setCharacterEncoding("UTF-8");
 		
 		String staff = new Gson().toJson(staffs);
-		resp.getWriter().write(staff);
-		System.out.println(staff);  
+		resp.getWriter().write(staff); 
 		
 	}
 	
+	/**
+	 * Search LIKE by name input text (Input Text)
+	 * @param req
+	 * @param resp
+	 * @throws Exception
+	 */
 	public void getSearch(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		StaffDB db = new StaffDB();
 		String name = req.getParameter("name");
@@ -143,9 +153,14 @@ public class Run extends HttpServlet{
 		
 		String staff = new Gson().toJson(staffs);
 		resp.getWriter().write(staff);
-		System.out.println(staff);  
 	}
 	
+	/**
+	 * Update status to database (1:Active, 0:Drop).
+	 * @param req
+	 * @param resp
+	 * @throws Exception
+	 */
 	public void updateStatus(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		StaffDB db = new StaffDB();
 		int s = Integer.parseInt(req.getParameter("s"));
@@ -158,6 +173,12 @@ public class Run extends HttpServlet{
 		}
 	}
 	
+	/**
+	 * Select DISTINT by class name from database.
+	 * @param req
+	 * @param resp
+	 * @throws Exception
+	 */
 	public void getClassName(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		StaffDB db = new StaffDB();
 		resp.setContentType("application/json");
@@ -168,8 +189,5 @@ public class Run extends HttpServlet{
 		
 		String staff = new Gson().toJson(staffs);
 		resp.getWriter().write(staff);
-		System.out.println(staff);
-
 	}
-
 }

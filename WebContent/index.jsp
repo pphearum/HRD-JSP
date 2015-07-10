@@ -17,14 +17,10 @@
         <div id="container">
             <h2>Student and Staff Management</h2>
             <label>Search By Name: </label><input type="text" value="" id="n">
+            
             <select id="room">
                 <option>All Class</option>
-<!--
-                <option>KPS</option>
-                <option>BTB</option>
-                <option>PP</option>
-                <option>SR</option>
--->
+                <!-- Retrieve Class Name from Database -->
             </select>
             
             <select id="status">

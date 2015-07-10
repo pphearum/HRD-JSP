@@ -20,10 +20,16 @@ public class StaffDB {
 		InitialContext init = new InitialContext();
 		DataSource ds = (DataSource) init.lookup("java:comp/env/theajaxdb");
 		con = ds.getConnection();
-		
 		System.out.println("Connection Success!");
 	}
 	
+	/**
+	 * Update Status (1:Active, 0:Drop).
+	 * @param id
+	 * @param status
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean update(String id, int status) throws SQLException{
 		String sql = "UPDATE hrd_students SET stu_status =? WHERE stu_id =?";
 		PreparedStatement pstmt = con.prepareStatement(sql);
@@ -38,6 +44,13 @@ public class StaffDB {
 		}
 		return false;
 	}
+	
+	/**
+	 * Get Data From database (LIKE input parameter).
+	 * @param input
+	 * @return
+	 * @throws SQLException
+	 */
 	public ArrayList<Staff> getList(String input) throws SQLException{
 		String sql = "SELECT * FROM hrd_students WHERE stu_name LIKE '%"+input+"%'";
 		pstmt = con.prepareStatement(sql);
@@ -54,7 +67,7 @@ public class StaffDB {
 			staff.setStatus(rs.getInt("stu_status"));
 			staffs.add(staff);
 		}
-		return staffs;
+			return staffs;
 		}finally{
 			if(rs!=null){
 				rs.close();
@@ -68,6 +81,14 @@ public class StaffDB {
 		}
 	}
 	
+	/**
+	 * Search by name in database
+	 * @param name
+	 * @param room
+	 * @param status
+	 * @return
+	 * @throws SQLException
+	 */
 	public ArrayList<Staff> getSearch(String name, String room, String status) throws SQLException{
 		String sql="";
 		int st;
@@ -86,10 +107,6 @@ public class StaffDB {
 		}else if(!room.endsWith("All Class") && !status.equals("All Status")){
 			sql = "SELECT * FROM hrd_students WHERE stu_name LIKE '%"+name+"%' AND stu_status ="+st+" AND stu_class ='"+room+"'";
 		}
-		
-		
-//		String sql = "SELECT * FROM hrd_students WHERE stu_name LIKE '%"+name+"%' AND stu_room LIKE '%"+room+"%' AND stu_status LIKE '%"+status+"%'";
-		
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
 		staffs = new ArrayList<>();
@@ -118,6 +135,13 @@ public class StaffDB {
 		}
 	}
 	
+	/**
+	 * Get ClassName From database 
+	 * @param room
+	 * @param filter
+	 * @return
+	 * @throws SQLException
+	 */
 	public ArrayList<Staff> getFilterClass(String room, String filter) throws SQLException{
 		String sql = "SELECT * FROM hrd_students WHERE stu_class ='"+room+"' AND stu_name LIKE '%"+filter+"%'";
 		pstmt = con.prepareStatement(sql);
@@ -134,7 +158,7 @@ public class StaffDB {
 			staff.setStatus(rs.getInt("stu_status"));
 			staffs.add(staff);
 		}
-		return staffs;
+			return staffs;
 		}finally{
 			if(rs!=null){
 				rs.close();
@@ -148,6 +172,13 @@ public class StaffDB {
 		}
 	}
 	
+	/**
+	 * GET Status Filter from database
+	 * @param str_status
+	 * @param filter
+	 * @return
+	 * @throws SQLException
+	 */
 	public ArrayList<Staff> getFilterStatus(String str_status, String filter) throws SQLException{
 		int status=0;
 		if(str_status.equals("Active")){
@@ -186,6 +217,14 @@ public class StaffDB {
 		}
 	}
 	
+	/**
+	 * Get Filter both class and room name
+	 * @param str_status
+	 * @param room
+	 * @param filter
+	 * @return
+	 * @throws SQLException
+	 */
 	public ArrayList<Staff> getFilterStatusAndRoom(String str_status, String room, String filter) throws SQLException{
 		int status=0;
 		if(str_status.equals("Active")){
@@ -224,6 +263,11 @@ public class StaffDB {
 		}
 	}
 	
+	/**
+	 * Select DISTINCT by class name in from database
+	 * @return
+	 * @throws SQLException
+	 */
 	public ArrayList<Staff> getClassName() throws SQLException{
 		String sql = "SELECT DISTINCT stu_class FROM hrd_students";
 		pstmt = con.prepareStatement(sql);
