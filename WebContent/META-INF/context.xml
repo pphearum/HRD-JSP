@@ -1,0 +1,11 @@
+<Context>
+	<Resource name="theajaxdb"
+		auth="Container"
+		type="javax.sql.DataSource"
+		maxActive="15"
+		maxIdle="20"
+		username="root"
+		password=""
+		driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/ajaxdb"/>
+</Context>

@@ -1,0 +1,35 @@
+body{
+   background: #e5e5e5; 
+}
+h2{
+    font-family: cursive;
+    text-shadow: 1px 1px 5px #bababa;
+    color: #039d67;
+}
+#container{
+    text-align: center;
+}
+div#display{
+    margin-top: 20px;
+}
+th, td{
+    width: 180px; 
+}
+td{
+    padding: 8px 0; 
+}
+tr:nth-child(odd){
+    background: #d8d8d8;
+}
+th{
+	background: #039d67;
+    color: #fff;
+    padding: 13px 0; 
+}       
+table{
+    border-collapse: collapse;  
+    box-shadow: 2px 2px 15px #bababa;
+}
+img{
+    width: 35px;
+}
