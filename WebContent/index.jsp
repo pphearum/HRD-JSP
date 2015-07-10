@@ -7,39 +7,66 @@
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title>Staff and Student Management</title>
         
+        <!-- Jquery libruary -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         
-        <link href="style/style.css" type="text/css" rel="stylesheet"> 
+        <!-- Bootstrap libruary-->
+        <link href="bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+        
+        <!-- My Style CSS -->
+        <link href="style/style.css" type="text/css" rel="stylesheet">
+        
+        <!-- My Script -->
         <script src="script/style.js"></script>
     </head>
     
     <body>
-        <div id="container">
-            <h2>Student and Staff Management</h2>
-            <label>Search By Name: </label><input type="text" value="" id="n">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-sm-12">
+                    <h2 class="text-center">Student and Staff Management</h2> 
+                    <div id="filter">
+                        <form class="form-inline" role="form">
+                            <div class="form-group">
+                                <label>Search By Name: </label>
+                                <input class="form-control" type="text" value="" id="n">
+                            </div>
+                            <select class="form-control" id="room">
+                                <option>All Class</option>
+                                <!-- Retrieve Class Name from Database -->
+                            </select>
+                            <select class="form-control" id="status">
+                                <option>All Status</option>
+                                <option>Active</option>
+                                <option>Drop</option>
+                            </select>
+                        </form> 
+                    </div>
+                    <div id="display">
+                        <table class="table table-bordered text-center" id="tbstaff">
+                            <tr id="header">
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Gender</th>
+                                <th>University</th>
+                                <th>Class</th>
+                                <th>Status</th>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                </div>
+                
+                
+                
+            </div>
+        </div>
+        <div id="wrapper">
             
-            <select id="room">
-                <option>All Class</option>
-                <!-- Retrieve Class Name from Database -->
-            </select>
-            
-            <select id="status">
-                <option>All Status</option>
-                <option>Active</option>
-                <option>Drop</option>
-            </select>
             
             <div id="display">
-                <table align="center" id="tbstaff">
-                    <tr id="header">
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Gender</th>
-                        <th>University</th>
-                        <th>Class</th>
-                        <th>Status</th>
-                    </tr>
-                </table>
+                
             </div>
         </div>
     </body>
