@@ -184,10 +184,12 @@ function setSelectRoom() {
 
 /* Add new staff */
 function addStaff(){
-    var values = {};
-        $.each($('#addform').serializeArray(), function(i, field) {
-            alert(i);
-        });
+    var id = $('#modal_id').val();
+    var name = $('#modal_name').val();
+    var gender = $('#modal_gender').val();
+    var uni = $('#modal_uni').val();
+    var room = $('#modal_room').val();
+    alert(id+" "+name+" "+gender+" "+uni+" "+room);
     
     $.post("add.act",{
     

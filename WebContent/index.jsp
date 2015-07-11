@@ -77,27 +77,27 @@
                                     
                                     <div class="row">
                                     	<div class="form-group">
-	                                        <label class="control-label col-sm-3" for="email">ID:</label>
+	                                        <label class="control-label col-sm-3">ID:</label>
 	                                        <div class="col-sm-8">
-	                                            <input type="email" class="form-control" id="email" placeholder="Enter ID">
+	                                            <input type="email" class="form-control" id="modal_id" placeholder="Enter ID">
 	                                        </div>
                                         </div>
                                     </div>
                                     
                                     <div class="row">
                                     	<div class="form-group">
-	                                        <label class="control-label col-sm-3" for="email">Name:</label>
+	                                        <label class="control-label col-sm-3">Name:</label>
 	                                        <div class="col-sm-8">
-	                                            <input type="email" class="form-control" id="email" placeholder="Enter Name">
+	                                            <input type="email" class="form-control" id="modal_name" placeholder="Enter Name">
 	                                        </div>
                                         </div>
                                     </div>
                                     
                                     <div class="row">
                                     	<div class="form-group">
-	                                       <label class="control-label col-sm-3" for="email">Gender:</label>
+	                                       <label class="control-label col-sm-3">Gender:</label>
 	                                       <div class="col-sm-4">
-	                                           <select class="form-control">
+	                                           <select class="form-control" id="modal_gender">
                                                     <option>Male</option>
                                                     <option>Female</option>
                                                </select>
@@ -107,9 +107,9 @@
                                     
                                     <div class="row">
                                     	<div class="form-group">
-	                                       <label class="control-label col-sm-3" for="email">University:</label>
+	                                       <label class="control-label col-sm-3">University:</label>
 	                                       <div class="col-sm-4">
-	                                           <select class="form-control">
+	                                           <select class="form-control" id="modal_uni">
                                                     <option>RUPP</option>
                                                     <option>NUM</option>
                                                     <option>SETECT</option>
@@ -123,9 +123,9 @@
                                     
                                     <div class="row">
                                     	<div class="form-group">
-	                                       <label class="control-label col-sm-3" for="email">Class:</label>
+	                                       <label class="control-label col-sm-3">Class:</label>
 	                                       <div class="col-sm-4">
-	                                           <select class="form-control">
+	                                           <select class="form-control" id="modal_room">
                                                     <option>BTB</option>
                                                     <option>KPS</option>
                                                     <option>PP</option>
