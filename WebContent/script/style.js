@@ -20,7 +20,11 @@ $(document).ready(function() {
 
 	$('input').keyup(function() {
 		search();
-	});   
+	}); 
+    
+    $('#add').click(function(){
+        addStaff();
+    });
 });
 
 /* Get Staff from Database  */
@@ -56,7 +60,11 @@ function listDetail(data) {
                     '<td>' + setGender(data[i].gender) + '</td>' + 
                     '<td>' + data[i].university + '</td>' + 
                     '<td>' + data[i].room+ '</td>' + 
-                    '<td><img src="' + setStatus(data[i].status)+ '" alt="Status" id="' + data[i].id + '"></td>' + 
+                    '<td><img src="' + setStatus(data[i].status)+ '" alt="Status" id="' + data[i].id + '"></td>'+
+                    '<td>'+
+                        '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#updateModal">Update</button>'+' '+
+                        '<button type="button" class="btn btn-danger">Delete</button>'+
+                    '</td>'+
                 '</tr>';
 	}
 	return str;
@@ -172,4 +180,18 @@ function setSelectRoom() {
 			$('select#room').append("<option>" + data[i].room + "</option>");
 		}
 	});
+}
+
+/* Add new staff */
+function addStaff(){
+    var values = {};
+        $.each($('#addform').serializeArray(), function(i, field) {
+            alert(i);
+        });
+    
+    $.post("add.act",{
+    
+    },function(){
+    
+    });
 }

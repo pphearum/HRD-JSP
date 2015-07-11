@@ -55,6 +55,9 @@ public class Run extends HttpServlet{
 			case "/updatestatus.act":
 				updateStatus(req, resp);
 				break;
+			case "/add.act":
+				System.out.println("Add");
+				break;
 			}
 		}catch(Exception e){
 			e.printStackTrace();

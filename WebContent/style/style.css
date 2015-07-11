@@ -1,3 +1,7 @@
+@font-face{
+    font-family: phearum;
+    src:url(../font/romnea.ttf)
+}
 body{
    background: #e5e5e5; 
 }
@@ -5,7 +9,7 @@ body{
     margin-top: 40px;
 }
 h2{
-    font-family: cursive;
+    font-family: phearum;
     text-shadow: 1px 1px 5px #bababa;
     color: #039d67;
 }
@@ -17,9 +21,15 @@ div#display{
 }
 img{
     width: 35px;
+    overflow: hidden;
 }
 
-/* Overrid Bootstrap */
+/* Overrided Bootstrap */
 th{
   text-align: center;
+  background: #039d67;
+  color:#fff;
+}
+.table>tbody>tr>td{
+    vertical-align: middle;
 }
