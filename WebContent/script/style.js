@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    help = false;
 	room = $('#room').val();
 	status = $('#status').val();
 	input = $('input').val();
@@ -22,10 +22,28 @@ $(document).ready(function() {
 		search();
 	}); 
     
-    $('#add').click(function(){
-        addStaff();
+        
+    /* set default add button id when modal hide*/
+    $('#updateModal').on('hidden.bs.modal', function (e) {
+
     });
+    
 });
+
+function addstaff(){
+    resetModal();
+    help = true;
+    $('#modal_add').text("Add Now !");
+    $('.modal-title').text("Add New Staff Infomation");
+}
+
+function addOrUpdate(){
+    if(help){
+        addStaff();
+    }else{
+        updateStaff();
+    }      
+}
 
 /* Get Staff from Database  */
 function getList() {
@@ -33,7 +51,7 @@ function getList() {
 	status = $('#status').val();
 	input = $('input').val();
 
-	$.post("getstaff.act", {
+	$.post("getstafflist.act", {
 		room : room,
 		status : status,
 		input : input,
@@ -62,7 +80,7 @@ function listDetail(data) {
                     '<td>' + data[i].room+ '</td>' + 
                     '<td><img src="' + setStatus(data[i].status)+ '" alt="Status" id="' + data[i].id + '"></td>'+
                     '<td>'+
-                        '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#updateModal">Update</button>'+' '+
+                        '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#updateModal" onclick="getStaff(\''+data[i].id+'\')" >Update</button>'+' '+
                         '<button type="button" class="btn btn-danger">Delete</button>'+
                     '</td>'+
                 '</tr>';
@@ -182,18 +200,75 @@ function setSelectRoom() {
 	});
 }
 
+function getModalId(){
+     id = $('#modal_id').val();
+     name = $('#modal_name').val();
+     gender = $('#modal_gender').val();
+     uni = $('#modal_uni').val();
+     room = $('#modal_room').val();
+}
+
 /* Add new staff */
 function addStaff(){
-    var id = $('#modal_id').val();
-    var name = $('#modal_name').val();
-    var gender = $('#modal_gender').val();
-    var uni = $('#modal_uni').val();
-    var room = $('#modal_room').val();
-    alert(id+" "+name+" "+gender+" "+uni+" "+room);
-    
+    getModalId();
     $.post("add.act",{
+        id:id,
+        name:name,
+        gender:gender,
+        uni:uni,
+        room:room,
+    },function(data){
+        clearChild();
+        getList();
+        resetModal();
+    });
+}
+
+/* Clear input staff */
+function resetModal(){
+    $('#modal_id').val("");
+    $('#modal_name').val("");
+    $('#modal_gender').val("Male");
+    $('#modal_uni').val("RUPP");
+    $('#modal_room').val("BTB");
+}
+
+/* Get Staff Detial */
+function getStaff(id){
+    $.post("getstaff.act",{
+        id:id
+    },function(data){
+        getDBToModal(data);
+        help = false;
+        $('#modal_add').text("Update Now !");
+        $('.modal-title').text("Update Staff Infomation");
+    });
+}
+
+function getDBToModal(data){
+    $('#modal_id').val(""+data[0].id+"");
+    $('#modal_name').val(""+data[0].name+"");
+    $('#modal_gender').val(""+setGender(data[0].gender)+"");
+    $('#modal_uni').val(""+data[0].university+"");
+    $('#modal_room').val(""+data[0].room+"");
     
-    },function(){
-    
+    $('#modal_id').attr('disabled','true');
+}
+
+function updateStaff(id){
+    id = $('#modal_id').val();
+     name = $('#modal_name').val();
+     gender = $('#modal_gender').val();
+     uni = $('#modal_uni').val();
+     room = $('#modal_room').val();
+    $.post("update.act",{
+        id:id,
+        name:name,
+        gender:gender,
+        uni:uni,
+        room:room,
+    },function(data){
+        clearChild();
+        getList();
     });
 }

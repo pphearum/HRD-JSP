@@ -23,6 +23,29 @@ public class StaffDB {
 		System.out.println("Connection Success!");
 	}
 	
+	public boolean addStaff(Staff staff) throws SQLException{
+		String sql = "INSERT INTO hrd_students(stu_id, stu_name, stu_gender, stu_university, stu_class)"
+				+ " VALUES(?,?,?,?,?);";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setString(1,staff.getId());
+		pstmt.setString(2, staff.getName());
+		pstmt.setInt(3, staff.getGender());
+		pstmt.setString(4, staff.getUniversity());
+		pstmt.setString(5, staff.getRoom());
+		
+		int i = pstmt.executeUpdate();
+		if(i>0){
+			if(pstmt!=null){
+				pstmt.close();
+			}
+			if(con!=null){
+				con.close();
+			}
+			return true;
+		}
+		return false;
+	}
+	
 	/**
 	 * Update Status (1:Active, 0:Drop).
 	 * @param id
@@ -52,7 +75,7 @@ public class StaffDB {
 	 * @throws SQLException
 	 */
 	public ArrayList<Staff> getList(String input) throws SQLException{
-		String sql = "SELECT * FROM hrd_students WHERE stu_name LIKE '%"+input+"%'";
+		String sql = "SELECT * FROM hrd_students WHERE stu_name LIKE '%"+input+"%' ORDER BY stu_id DESC";
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
 		staffs = new ArrayList<>();
@@ -99,13 +122,13 @@ public class StaffDB {
 		}
 		
 		if(room.equals("All Class") && status.equals("All Status")){
-			sql = "SELECT * FROM hrd_students WHERE stu_name LIKE '%"+name+"%'";
+			sql = "SELECT * FROM hrd_students WHERE stu_name LIKE '%"+name+"%' ORDER BY stu_id DESC";
 		}else if(!room.equals("All Class") && status.equals("All Status")){
-			sql = "SELECT * FROM hrd_students WHERE stu_name LIKE '%"+name+"%' AND stu_class ='"+room+"'";
+			sql = "SELECT * FROM hrd_students WHERE stu_name LIKE '%"+name+"%' AND stu_class ='"+room+"' ORDER BY stu_id DESC";
 		}else if(room.equals("All Class") && !status.equals("All Status")){
-			sql = "SELECT * FROM hrd_students WHERE stu_name LIKE '%"+name+"%' AND stu_status ="+st+"";
+			sql = "SELECT * FROM hrd_students WHERE stu_name LIKE '%"+name+"%' AND stu_status ="+st+" ORDER BY stu_id DESC";
 		}else if(!room.endsWith("All Class") && !status.equals("All Status")){
-			sql = "SELECT * FROM hrd_students WHERE stu_name LIKE '%"+name+"%' AND stu_status ="+st+" AND stu_class ='"+room+"'";
+			sql = "SELECT * FROM hrd_students WHERE stu_name LIKE '%"+name+"%' AND stu_status ="+st+" AND stu_class ='"+room+"' ORDER BY stu_id DESC";
 		}
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
@@ -143,7 +166,7 @@ public class StaffDB {
 	 * @throws SQLException
 	 */
 	public ArrayList<Staff> getFilterClass(String room, String filter) throws SQLException{
-		String sql = "SELECT * FROM hrd_students WHERE stu_class ='"+room+"' AND stu_name LIKE '%"+filter+"%'";
+		String sql = "SELECT * FROM hrd_students WHERE stu_class ='"+room+"' AND stu_name LIKE '%"+filter+"%' ORDER BY stu_id DESC";
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
 		staffs = new ArrayList<>();
@@ -188,7 +211,7 @@ public class StaffDB {
 			status = 0;
 		}
 
-		String sql = "SELECT * FROM hrd_students WHERE stu_status ="+status+" AND stu_name LIKE '%"+filter+"%'";
+		String sql = "SELECT * FROM hrd_students WHERE stu_status ="+status+" AND stu_name LIKE '%"+filter+"%' ORDER BY stu_id DESC";
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
 		staffs = new ArrayList<>();
@@ -234,7 +257,7 @@ public class StaffDB {
 			status = 0;
 		}
 
-		String sql = "SELECT * FROM hrd_students WHERE stu_status ="+status+" AND stu_class ='"+room+"' AND stu_name LIKE '%"+filter+"%'";
+		String sql = "SELECT * FROM hrd_students WHERE stu_status ="+status+" AND stu_class ='"+room+"' AND stu_name LIKE '%"+filter+"%' ORDER BY stu_id DESC";
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
 		staffs = new ArrayList<>();
@@ -292,4 +315,66 @@ public class StaffDB {
 			}
 		}
 	}
+	
+	
+	public ArrayList<Staff> getStaff(String id) throws SQLException{
+		String sql = "SELECT * FROM hrd_students WHERE stu_id = ?;";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, id);
+		rs = pstmt.executeQuery();
+		staffs = new ArrayList<>();
+		try{
+		if(rs.next()){
+			staff = new Staff();
+			staff.setId(rs.getString("stu_id"));
+			staff.setName(rs.getString("stu_name"));
+			staff.setGender(rs.getInt("stu_gender"));
+			staff.setUniversity(rs.getString("stu_university"));
+			staff.setRoom(rs.getString("stu_class"));
+			staff.setStatus(rs.getInt("stu_status"));
+			staffs.add(staff);
+		}
+		return staffs;
+		}finally{
+			if(rs!=null){
+				rs.close();
+			}
+			if(pstmt!=null){
+				pstmt.close();
+			}
+			if(con!=null){
+				con.close();
+			}
+		}
+	}
+	
+	public boolean udpateStaff(String id, String name, int gender, String uni, String room) throws SQLException{
+		
+		String sql = "UPDATE hrd_students "
+				+ "SET stu_name = ?, "
+				+ "stu_gender = ?, "
+				+ "stu_university = ?, "
+				+ "stu_class = ? "
+				+ "WHERE stu_id = ?;";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, name);
+		pstmt.setInt(2, gender);
+		pstmt.setString(3, uni);
+		pstmt.setString(4, room);
+		pstmt.setString(5, id);
+		
+		int i = pstmt.executeUpdate();
+		if(i>0){
+			if(pstmt!=null){
+				pstmt.close();
+			}
+			if(con!=null){
+				pstmt.close();
+			}
+			return true;
+		}
+		return false;
+	}
+	
+	
 }

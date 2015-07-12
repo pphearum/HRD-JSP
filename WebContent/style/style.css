@@ -33,3 +33,6 @@ th{
 .table>tbody>tr>td{
     vertical-align: middle;
 }
+.modal-header h4{
+    font-family: phearum;
+}

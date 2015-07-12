@@ -7,6 +7,9 @@ public class Staff {
 	private String university;
 	private String room;
 	private int status;
+	public Staff(String id, String name, int gender, String university,String room,int status){
+		setId(id); setName(name); setGender(gender); setUniversity(university); setRoom(room); setStatus(status);
+	}
 	public Staff(){
 		
 	}

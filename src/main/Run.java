@@ -41,7 +41,11 @@ public class Run extends HttpServlet{
 		try{
 			switch (command) {
 			case "/getstaff.act":
-				getStudentList(req, resp);
+				System.out.println("Get one staff");
+				getStaff(req,resp);
+				break;
+			case "/getstafflist.act":
+				getStaffList(req, resp);
 				break;
 			case "/getclassname.act":
 				getClassName(req,resp);
@@ -56,11 +60,63 @@ public class Run extends HttpServlet{
 				updateStatus(req, resp);
 				break;
 			case "/add.act":
-				System.out.println("Add");
+				addStaff(req,resp);
+				break;
+			case "/update.act":
+				updateStaff(req, resp);
 				break;
 			}
 		}catch(Exception e){
 			e.printStackTrace();
+		}
+	}
+	public void updateStaff(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+		StaffDB db = new StaffDB();
+		
+		String id = req.getParameter("id");
+		String name = req.getParameter("name");
+		String gender = req.getParameter("gender");
+		String uni = req.getParameter("uni");
+		String room = req.getParameter("room");
+		
+		System.out.println(id+" "+name+" "+gender+" "+uni+" "+room);
+		
+		if(db.udpateStaff(id, name, gender.equals("Male")?1:0, uni, room)){
+			System.out.println("Updated!");
+		}else{
+			System.out.println("Update Failed");
+		}
+		
+	}
+	public void getStaff(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+		StaffDB db = new StaffDB();
+		String id = req.getParameter("id");
+		System.out.println(id);
+		
+		ArrayList<Staff> staffs = db.getStaff(id);
+		resp.setContentType("application/json");
+		resp.setCharacterEncoding("UTF-8");
+		
+		String staff = new Gson().toJson(staffs);
+		resp.getWriter().write(staff);
+		System.out.println(staff);
+	}
+	
+	
+	public void addStaff(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+		StaffDB db = new StaffDB();
+		
+		String id = req.getParameter("id");
+		String name = req.getParameter("name");
+		String gender = req.getParameter("gender");
+		String uni = req.getParameter("uni");
+		String room = req.getParameter("room");
+		
+		Staff staff = new Staff(id,name, (gender.equals("Male"))?1:0, uni,room,1);
+		if(db.addStaff(staff)){
+			System.out.println("Inserted!");
+		}else{
+			System.out.println("Insert Failed!");
 		}
 	}
 	
@@ -70,7 +126,7 @@ public class Run extends HttpServlet{
 	 * @param resp
 	 * @throws Exception
 	 */
-	public void getStudentList(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+	public void getStaffList(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		StaffDB db = new StaffDB();
 		String room = req.getParameter("room");
 		String status = req.getParameter("status");
@@ -120,7 +176,7 @@ public class Run extends HttpServlet{
 			filter="";
 		}
 		if(room.equals("All Class") && status.equals("All Status")){
-			getStudentList(req, resp);
+			getStaffList(req, resp);
 			return;
 		}else if(room.equals("All Class") && !status.equals("All Status")){
 			staffs = db.getFilterStatus(status, filter);

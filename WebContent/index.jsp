@@ -42,7 +42,7 @@
                                 <option>Active</option>
                                 <option>Drop</option>
                             </select>
-                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#updateModal">Add New</button>
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#updateModal" onclick="addstaff()">Add New</button>
                         </form> 
                     </div>
                     <div id="display">
@@ -69,7 +69,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Add New Staff</h4>
+                            <h4 class="modal-title text-center">Add New Staff</h4>
                         </div>
                         <div class="modal-body">
 
@@ -79,7 +79,7 @@
                                     	<div class="form-group">
 	                                        <label class="control-label col-sm-3">ID:</label>
 	                                        <div class="col-sm-8">
-	                                            <input type="email" class="form-control" id="modal_id" placeholder="Enter ID">
+	                                            <input type="text" class="form-control" id="modal_id" placeholder="Enter ID">
 	                                        </div>
                                         </div>
                                     </div>
@@ -88,7 +88,7 @@
                                     	<div class="form-group">
 	                                        <label class="control-label col-sm-3">Name:</label>
 	                                        <div class="col-sm-8">
-	                                            <input type="email" class="form-control" id="modal_name" placeholder="Enter Name">
+	                                            <input type="text" class="form-control" id="modal_name" placeholder="Enter Name">
 	                                        </div>
                                         </div>
                                     </div>
@@ -112,7 +112,7 @@
 	                                           <select class="form-control" id="modal_uni">
                                                     <option>RUPP</option>
                                                     <option>NUM</option>
-                                                    <option>SETECT</option>
+                                                    <option>SETEC</option>
                                                     <option>PPIU</option>
                                                     <option>NU</option>
                                                     <option>UP</option>
@@ -137,7 +137,7 @@
                                     
                                     <div class="row">
                                         <div class="text-center">
-                                            <button type="button" class="btn btn-success" id="add">Add</button>
+                                            <button type="button" class="btn btn-success process" onclick="addOrUpdate()" id="modal_add">Add Now !</button>
                                         </div>
                                     </div>
                                     
