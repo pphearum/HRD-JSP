@@ -65,10 +65,23 @@ public class Run extends HttpServlet{
 			case "/update.act":
 				updateStaff(req, resp);
 				break;
+			case "/delete.act":
+				deleteStaff(req,resp);
+				break;
 			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+	}
+	public void deleteStaff(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+		StaffDB db = new StaffDB();
+		String id = req.getParameter("id");
+		System.out.println(id);
+		if(db.deleteStaff(id)){
+			System.out.println("Deleted!");
+		}else{
+			System.out.println("Deleted! Failed");
+		}	
 	}
 	public void updateStaff(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		StaffDB db = new StaffDB();

@@ -376,5 +376,22 @@ public class StaffDB {
 		return false;
 	}
 	
+	public boolean deleteStaff(String id) throws SQLException{
+		String sql = "DELETE FROM hrd_students WHERE stu_id = ?;";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, id);
+		int i = pstmt.executeUpdate();
+		if(i>0){
+			if(pstmt!=null){
+				pstmt.close();
+			}
+			if(con!=null){
+				con.close();
+			}
+			return true;
+		}
+		return false;
+	}
+	
 	
 }

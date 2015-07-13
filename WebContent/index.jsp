@@ -76,19 +76,23 @@
                                 <form class="form-horizontal" role="form" id="addform">
                                     
                                     <div class="row">
-                                    	<div class="form-group">
+                                    	<div class="form-group" id="validId">
 	                                        <label class="control-label col-sm-3">ID:</label>
 	                                        <div class="col-sm-8">
 	                                            <input type="text" class="form-control" id="modal_id" placeholder="Enter ID">
+                                                <span class="glyphicon  form-control-feedback" aria-hidden="false"></span>
+                                                <span id="inputError2Status" class="sr-only">(error)</span>
 	                                        </div>
                                         </div>
                                     </div>
                                     
                                     <div class="row">
-                                    	<div class="form-group">
+                                    	<div class="form-group" id="validName">
 	                                        <label class="control-label col-sm-3">Name:</label>
 	                                        <div class="col-sm-8">
 	                                            <input type="text" class="form-control" id="modal_name" placeholder="Enter Name">
+                                                <span class="glyphicon form-control-feedback" aria-hidden="false"></span>
+                                                <span id="inputError2Status" class="sr-only">(error)</span>
 	                                        </div>
                                         </div>
                                     </div>

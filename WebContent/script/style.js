@@ -7,7 +7,7 @@ $(document).ready(function() {
     /* Get Staff Data From Database */
 	getList();
     
-    /* Retrive Class Name From Database */
+    /* Retrieve Class Name From Database */
     setSelectRoom();
 
 	$('#room').change(function() {
@@ -35,15 +35,41 @@ function addstaff(){
     help = true;
     $('#modal_add').text("Add Now !");
     $('.modal-title').text("Add New Staff Infomation");
+    $('#modal_id').attr('disabled',false);
 }
 
 function addOrUpdate(){
+	var id = $('#modal_id').val();
+    var name = $('#modal_name').val();
+    
     if(help){
-        addStaff();
+        if(id=="" && name==""){
+            $('#validId').addClass('has-error has-feedback');
+            $('#validName').addClass('has-error has-feedback');
+            $('.glyphicon').addClass('glyphicon-remove');
+            
+        }else if(id=="" && name!=""){
+            $('#validId').addClass('has-error has-feedback');
+            $('#validId .glyphicon').addClass('glyphicon-remove');
+            
+            $('#validName').removeClass('has-error has-feedback');
+            $('#validName .glyphicon').removeClass('glyphicon-remove');
+            
+        }else if(id!="" && name==""){
+            $('#validName').addClass('has-error has-feedback');
+            $('#validName .glyphicon').addClass('glyphicon-remove')
+            
+            $('#validId').removeClass('has-error has-feedback');
+            $('#validId .glyphicon').removeClass('glyphicon-remove');
+        }else{
+            addStaff();
+            $('#updateModal').modal('hide');
+        }
     }else{
         updateStaff();
     }      
 }
+
 
 /* Get Staff from Database  */
 function getList() {
@@ -81,7 +107,7 @@ function listDetail(data) {
                     '<td><img src="' + setStatus(data[i].status)+ '" alt="Status" id="' + data[i].id + '"></td>'+
                     '<td>'+
                         '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#updateModal" onclick="getStaff(\''+data[i].id+'\')" >Update</button>'+' '+
-                        '<button type="button" class="btn btn-danger">Delete</button>'+
+                        '<button type="button" class="btn btn-danger" onclick="deleteStaff(\''+data[i].id+'\')">Delete</button>'+
                     '</td>'+
                 '</tr>';
 	}
@@ -252,7 +278,7 @@ function getDBToModal(data){
     $('#modal_uni').val(""+data[0].university+"");
     $('#modal_room').val(""+data[0].room+"");
     
-    $('#modal_id').attr('disabled','true');
+    $('#modal_id').attr('disabled',true);
 }
 
 function updateStaff(id){
@@ -267,6 +293,15 @@ function updateStaff(id){
         gender:gender,
         uni:uni,
         room:room,
+    },function(data){
+        clearChild();
+        getList();
+    });
+}
+
+function deleteStaff(id){
+    $.post("delete.act",{
+        id:id
     },function(data){
         clearChild();
         getList();
