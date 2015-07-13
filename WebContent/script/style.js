@@ -18,14 +18,15 @@ $(document).ready(function() {
 		statusFilter();
 	});
 
-	$('input').keyup(function() {
+	$('#search input').keyup(function() {
 		search();
 	}); 
     
         
     /* set default add button id when modal hide*/
     $('#updateModal').on('hidden.bs.modal', function (e) {
-
+           $('#validId input').removeAttr('data-content');
+           $('#validId input').popover('show');
     });
     
 });
@@ -63,11 +64,12 @@ function addOrUpdate(){
             $('#validId .glyphicon').removeClass('glyphicon-remove');
         }else{
             addStaff();
-            $('#updateModal').modal('hide');
+            
         }
     }else{
         updateStaff();
-    }      
+        $('#updateModal').modal('hide');
+    }  
 }
 
 
@@ -244,9 +246,15 @@ function addStaff(){
         uni:uni,
         room:room,
     },function(data){
-        clearChild();
-        getList();
-        resetModal();
+        if(data=="x"){
+            $('#validId input').attr('data-content','Already');
+            $('#validId input').popover('show');
+        }else{
+            clearChild();
+            getList();
+            resetModal();
+            $('#updateModal').modal('hide');
+        }
     });
 }
 

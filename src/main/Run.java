@@ -76,7 +76,6 @@ public class Run extends HttpServlet{
 	public void deleteStaff(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		StaffDB db = new StaffDB();
 		String id = req.getParameter("id");
-		System.out.println(id);
 		if(db.deleteStaff(id)){
 			System.out.println("Deleted!");
 		}else{
@@ -125,12 +124,27 @@ public class Run extends HttpServlet{
 		String uni = req.getParameter("uni");
 		String room = req.getParameter("room");
 		
+
+		
 		Staff staff = new Staff(id,name, (gender.equals("Male"))?1:0, uni,room,1);
-		if(db.addStaff(staff)){
-			System.out.println("Inserted!");
-		}else{
-			System.out.println("Insert Failed!");
+		ArrayList<Staff> staffs = db.getList("");
+		ArrayList<String> staffid = new ArrayList<String>();
+		
+		for(int i=0;i<staffs.size();i++){
+			staffid.add(staffs.get(i).getId());
 		}
+		
+		if(staffid.contains(id)){
+			resp.getWriter().write("x");
+		}else{
+			resp.getWriter().write("o");
+			db = new StaffDB();
+			if(db.addStaff(staff)){
+				System.out.println("Inserted!");
+			}else{
+				System.out.println("Insert Failed!");
+			}
+		}		
 	}
 	
 	/**

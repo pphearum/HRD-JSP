@@ -29,7 +29,7 @@
                     <h2 class="text-center">Student and Staff Management</h2> 
                     <div id="filter">
                         <form class="form-inline" role="form">
-                            <div class="form-group">
+                            <div class="form-group" id="search">
                                 <label>Search By Name: </label>
                                 <input class="form-control" type="text" value="" id="n" placeholder="Enter name">
                             </div>
@@ -79,7 +79,7 @@
                                     	<div class="form-group" id="validId">
 	                                        <label class="control-label col-sm-3">ID:</label>
 	                                        <div class="col-sm-8">
-	                                            <input type="text" class="form-control" id="modal_id" placeholder="Enter ID">
+	                                            <input type="text" class="form-control" data-content="Already Exists!" id="modal_id" placeholder="Enter ID">
                                                 <span class="glyphicon  form-control-feedback" aria-hidden="false"></span>
                                                 <span id="inputError2Status" class="sr-only">(error)</span>
 	                                        </div>
