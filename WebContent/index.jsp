@@ -16,6 +16,7 @@
         
         <!-- My Style CSS -->
         <link href="style/style.css" type="text/css" rel="stylesheet">
+        <link href="font/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         
         <!-- My Script -->
         <script src="script/style.js"></script>
@@ -26,7 +27,7 @@
             <div class="row">
                 
                 <div class="col-sm-12">
-                    <h2 class="text-center">Student and Staff Management</h2> 
+                    <h2 class="text-center">Student and Staff Management</h2>
                     <div id="filter">
                         <form class="form-inline" role="form">
                             <div class="form-group" id="search">
@@ -79,7 +80,7 @@
                                     	<div class="form-group" id="validId">
 	                                        <label class="control-label col-sm-3">ID:</label>
 	                                        <div class="col-sm-8">
-	                                            <input type="text" class="form-control" data-content="Already Exists!" id="modal_id" placeholder="Enter ID">
+	                                            <input type="text" class="form-control" id="modal_id" placeholder="Enter ID">
                                                 <span class="glyphicon  form-control-feedback" aria-hidden="false"></span>
                                                 <span id="inputError2Status" class="sr-only">(error)</span>
 	                                        </div>
@@ -141,10 +142,9 @@
                                     
                                     <div class="row">
                                         <div class="text-center">
-                                            <button type="button" class="btn btn-success process" onclick="addOrUpdate()" id="modal_add">Add Now !</button>
-                                        </div>
+                                            <button type="button" class="btn btn-success process" onclick="addOrUpdate()" id="modal_add">Add Now !</button><span id="errMsg"></span>
+                                        </div> 
                                     </div>
-                                    
                                 </form>
                             
                         </div>

@@ -23,16 +23,52 @@ img{
     width: 35px;
     overflow: hidden;
 }
+#errMsg{
+	right: 100px;
+    bottom: 20px;
+    position: absolute;
+    color: #a00000;
+    font-family: phearum; 
+}
+.fa{
+    cursor: pointer; 
+    color: #fff;
+    border-radius: 5px;
+}
+.fa-pencil-square-o{
+    padding: 5px;
+    background: #039d67;
+}
+.fa-trash-o{
+    padding: 5px 8px;
+    background: rgb(200,74,50);
+}
 
 /* Overrided Bootstrap */
-th{
-  text-align: center;
-  background: #039d67;
-  color:#fff;
+.modal-header{
+    border-radius: 5px 5px 0 0;
+    background: #039d67; 
+    color: #fff;
 }
+th{
+    text-align: center;
+    background: #039d67;
+    color:#fff;
+    font-family: phearum;
+    font-weight: 200;
+}
+
 .table>tbody>tr>td{
     vertical-align: middle;
 }
+.table-bordered{
+    border: 0px solid #ddd;
+    box-shadow: 1px 1px 13px #afafaf;
+}
 .modal-header h4{
     font-family: phearum;
+}
+.btn-success{
+    font-family: phearum;
+    font-weight: 200;
 }

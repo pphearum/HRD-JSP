@@ -21,14 +21,11 @@ $(document).ready(function() {
 	$('#search input').keyup(function() {
 		search();
 	}); 
-    
-        
+         
     /* set default add button id when modal hide*/
     $('#updateModal').on('hidden.bs.modal', function (e) {
-           $('#validId input').removeAttr('data-content');
-           $('#validId input').popover('show');
-    });
-    
+           resetModal();
+    }); 
 });
 
 function addstaff(){
@@ -108,8 +105,8 @@ function listDetail(data) {
                     '<td>' + data[i].room+ '</td>' + 
                     '<td><img src="' + setStatus(data[i].status)+ '" alt="Status" id="' + data[i].id + '"></td>'+
                     '<td>'+
-                        '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#updateModal" onclick="getStaff(\''+data[i].id+'\')" >Update</button>'+' '+
-                        '<button type="button" class="btn btn-danger" onclick="deleteStaff(\''+data[i].id+'\')">Delete</button>'+
+                        '<i class="fa fa-pencil-square-o fa-2x" data-toggle="modal" data-target="#updateModal" onclick="getStaff(\''+data[i].id+'\')"></i>'+' '+
+                        '<i class="fa fa-trash-o fa-2x" onclick="deleteStaff(\''+data[i].id+'\')"></i>'+
                     '</td>'+
                 '</tr>';
 	}
@@ -247,8 +244,13 @@ function addStaff(){
         room:room,
     },function(data){
         if(data=="x"){
-            $('#validId input').attr('data-content','Already');
-            $('#validId input').popover('show');
+            $('#errMsg').text('Oop! Aready Exist !');
+            
+            $('#validId').addClass('has-error has-feedback');
+            $('#validId .glyphicon').addClass('glyphicon-remove');
+            
+            $('#validName').removeClass('has-error has-feedback');
+            $('#validName .glyphicon').removeClass('glyphicon-remove');
         }else{
             clearChild();
             getList();
@@ -265,6 +267,14 @@ function resetModal(){
     $('#modal_gender').val("Male");
     $('#modal_uni').val("RUPP");
     $('#modal_room').val("BTB");
+    
+    $('#validName').removeClass('has-error has-feedback');
+    $('#validName .glyphicon').removeClass('glyphicon-remove');
+    
+    $('#validId').removeClass('has-error has-feedback');
+    $('#validId .glyphicon').removeClass('glyphicon-remove');
+    
+    $('#errMsg').text("");
 }
 
 /* Get Staff Detial */
