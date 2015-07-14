@@ -105,8 +105,8 @@ function listDetail(data) {
                     '<td>' + data[i].room+ '</td>' + 
                     '<td><img src="' + setStatus(data[i].status)+ '" alt="Status" id="' + data[i].id + '"></td>'+
                     '<td>'+
-                        '<i class="fa fa-pencil-square-o fa-2x" data-toggle="modal" data-target="#updateModal" onclick="getStaff(\''+data[i].id+'\')"></i>'+' '+
-                        '<i class="fa fa-trash-o fa-2x" onclick="deleteStaff(\''+data[i].id+'\')"></i>'+
+                        '<i class="fa fa-pencil-square-o fa-2x" data-toggle="modal" title="Update Staff Info" data-target="#updateModal" onclick="getStaff(\''+data[i].id+'\')"></i>'+' '+
+                        '<i class="fa fa-trash-o fa-2x" title="Delete Staff Info" onclick="deleteStaff(\''+data[i].id+'\')"></i>'+
                     '</td>'+
                 '</tr>';
 	}

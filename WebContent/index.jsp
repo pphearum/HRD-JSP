@@ -17,6 +17,7 @@
         <!-- My Style CSS -->
         <link href="style/style.css" type="text/css" rel="stylesheet">
         <link href="font/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Lato:300,400,500,700" type="text/css" rel="stylesheet">
         
         <!-- My Script -->
         <script src="script/style.js"></script>
@@ -27,7 +28,7 @@
             <div class="row">
                 
                 <div class="col-sm-12">
-                    <h2 class="text-center">Student and Staff Management</h2>
+                    <h2 class="text-center"><span>S</span>tudent and <span>S</span>taff <span>M</span>anagement</h2>
                     <div id="filter">
                         <form class="form-inline" role="form">
                             <div class="form-group" id="search">

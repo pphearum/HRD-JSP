@@ -3,7 +3,9 @@
     src:url(../font/romnea.ttf)
 }
 body{
-   background: #e5e5e5; 
+    background: #f2f2f2; 
+    font-family: 'Lato', Calibri, Arial, sans-serif,'Nokora', serif;
+    font-weight: 700;
 }
 #filter{
     margin-top: 40px;
@@ -12,6 +14,10 @@ h2{
     font-family: phearum;
     text-shadow: 1px 1px 5px #bababa;
     color: #039d67;
+}
+h2 span{
+    color: #b2b2b2;
+    font-size: 40px;
 }
 #wrapper{
     text-align: center;
@@ -55,11 +61,19 @@ th{
     background: #039d67;
     color:#fff;
     font-family: phearum;
+    font-size: 15px;
     font-weight: 200;
+    
 }
-
+.table{
+    border-radius: 5px 5px 0 0;
+    background: #e5e5e5;
+}
 .table>tbody>tr>td{
     vertical-align: middle;
+}
+.table>tbody>tr>th{
+    padding: 10px inherit;
 }
 .table-bordered{
     border: 0px solid #ddd;
@@ -70,5 +84,14 @@ th{
 }
 .btn-success{
     font-family: phearum;
+    font-size: 15px;
     font-weight: 200;
+    background: #039d67;
+}
+.btn-success:hover, .btn-success:active, .btn-success:focus{
+    background: #078659;
+}
+.form-inline .btn-success{
+    float: right;
+    padding: 8px 70px;
 }
