@@ -118,7 +118,7 @@ public class Run extends HttpServlet{
 	public void addStaff(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		StaffDB db = new StaffDB();
 		
-		String id = req.getParameter("id");
+		String id = "131N"+req.getParameter("id");
 		String name = req.getParameter("name");
 		String gender = req.getParameter("gender");
 		String uni = req.getParameter("uni");

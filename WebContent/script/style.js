@@ -59,9 +59,13 @@ function addOrUpdate(){
             
             $('#validId').removeClass('has-error has-feedback');
             $('#validId .glyphicon').removeClass('glyphicon-remove');
-        }else{
-            addStaff();
+        }else if(id!="" && name!="" && !$.isNumeric(id)){
+            $('#errMsg').text('Enter Number Only !');
             
+            $('#validId').addClass('has-error has-feedback');
+            $('#validId .glyphicon').addClass('glyphicon-remove');
+        }else{
+           addStaff();     
         }
     }else{
         updateStaff();
@@ -132,7 +136,7 @@ function setStatus(status) {
 }
 
 
-/* Filter Class in combo */
+/* Filter Class in Combo */
 function classFilter() {
 	room = $('#room').val();
 	input = $('input').val();
@@ -211,13 +215,15 @@ function updateStatus(st) {
 		s : s,
 		id : id,
 	}, function(data) {
-		clearChild();
-		getList();
+//		clearChild();
+//		getList();
 	});
 }
 
 /*  Query Class Name From Database */
 function setSelectRoom() {
+    $('select#room').empty();
+    $('select#room').append("<option>All Class</option>");
 	$.post("getclassname.act", function(data) {
 		for (i = 0; i < data.length; i++) {
 			$('select#room').append("<option>" + data[i].room + "</option>");
@@ -256,6 +262,8 @@ function addStaff(){
             getList();
             resetModal();
             $('#updateModal').modal('hide');
+            swal({ type: "success",  title: "Save Successfully!",   timer: 1000,   showConfirmButton: false });
+            setSelectRoom();
         }
     });
 }
@@ -314,14 +322,28 @@ function updateStaff(id){
     },function(data){
         clearChild();
         getList();
+        swal({ type: "success",  title: "Update Successfully!",   timer: 1000,   showConfirmButton: false });
     });
 }
 
 function deleteStaff(id){
-    $.post("delete.act",{
-        id:id
-    },function(data){
-        clearChild();
-        getList();
-    });
+     $.confirm({
+            title: 'Delete Confirm!',
+            content: 'Are you sure you want to delete staff id '+id+' ?',
+            confirm: function(){
+            
+                $.post("delete.act",{
+                    id:id
+                },function(data){
+                    clearChild();
+                    getList();
+                    setSelectRoom();
+                });
+            },
+            cancel: function(){
+                
+            }
+       });
+    
+    
 }

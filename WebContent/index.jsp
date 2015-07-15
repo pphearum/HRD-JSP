@@ -14,6 +14,13 @@
         <link href="bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet">
         <script src="bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
         
+        <!-- JS Plugin -->
+
+        <script src="craftpip-jquery-confirm-4093790/dist/jquery-confirm.min.js"></script>
+        <link href="craftpip-jquery-confirm-4093790/dist/jquery-confirm.min.css" rel="stylesheet" type="text/css">
+        <script src="sweetalert-master/dist/sweetalert.min.js"></script>
+        <link href="sweetalert-master/dist/sweetalert.css" type="text/css" rel="stylesheet">
+        
         <!-- My Style CSS -->
         <link href="style/style.css" type="text/css" rel="stylesheet">
         <link href="font/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -26,7 +33,6 @@
     <body>
         <div class="container">
             <div class="row">
-                
                 <div class="col-sm-12">
                     <h2 class="text-center"><span>S</span>tudent and <span>S</span>taff <span>M</span>anagement</h2>
                     <div id="filter">

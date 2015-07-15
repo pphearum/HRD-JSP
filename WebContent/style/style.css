@@ -95,3 +95,23 @@ th{
     float: right;
     padding: 8px 70px;
 }
+/* Overrid js css plugin (JQUERY ALERT) */
+.jconfirm .jconfirm-box div.title {
+    font-size: 20px;
+    font-weight: normal;
+    font-family: phearum;
+    padding: 10px 15px 5px;
+    background: #078659;
+    color: #fff;
+}
+.jconfirm.white .jconfirm-box .buttons button.btn-default{
+    border: 1px solid #cccaca;
+}
+.jconfirm.white .jconfirm-box .buttons button.btn-default:hover{
+    background:#078659;
+    color: #fff;
+}
+.jconfirm .jconfirm-box div.content{
+    text-align: center;
+    font-size: 16px;
+}
