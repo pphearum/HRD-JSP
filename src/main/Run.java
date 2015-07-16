@@ -105,8 +105,6 @@ public class Run extends HttpServlet{
 		String uni = req.getParameter("uni");
 		String room = req.getParameter("room");
 		
-		System.out.println(id+" "+name+" "+gender+" "+uni+" "+room);
-		
 		if(db.udpateStaff(id, name, gender.equals("Male")?1:0, uni, room)){
 			System.out.println("Updated!");
 		}else{
