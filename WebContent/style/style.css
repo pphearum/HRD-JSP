@@ -95,6 +95,7 @@ th{
     float: right;
     padding: 8px 70px;
 }
+
 /* Overrid js css plugin (JQUERY ALERT) */
 .jconfirm .jconfirm-box div.title {
     font-size: 20px;

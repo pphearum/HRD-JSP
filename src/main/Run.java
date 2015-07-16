@@ -73,6 +73,13 @@ public class Run extends HttpServlet{
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Delete Staff in Database Using ID
+	 * @param req
+	 * @param resp
+	 * @throws Exception
+	 */
 	public void deleteStaff(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		StaffDB db = new StaffDB();
 		String id = req.getParameter("id");
@@ -82,6 +89,13 @@ public class Run extends HttpServlet{
 			System.out.println("Deleted! Failed");
 		}	
 	}
+	
+	/**
+	 * Update Staff Information in Database
+	 * @param req
+	 * @param resp
+	 * @throws Exception
+	 */
 	public void updateStaff(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		StaffDB db = new StaffDB();
 		
@@ -100,6 +114,13 @@ public class Run extends HttpServlet{
 		}
 		
 	}
+	
+	/**
+	 * Retrieve One Record Data in Database Using ID
+	 * @param req
+	 * @param resp
+	 * @throws Exception
+	 */
 	public void getStaff(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		StaffDB db = new StaffDB();
 		String id = req.getParameter("id");
@@ -114,7 +135,13 @@ public class Run extends HttpServlet{
 		System.out.println(staff);
 	}
 	
-	
+	/**
+	 * Insert One Record Staff Info to Database
+	 * 		ID = 131N + id (User Input)
+	 * @param req
+	 * @param resp
+	 * @throws Exception
+	 */
 	public void addStaff(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		StaffDB db = new StaffDB();
 		
@@ -123,8 +150,6 @@ public class Run extends HttpServlet{
 		String gender = req.getParameter("gender");
 		String uni = req.getParameter("uni");
 		String room = req.getParameter("room");
-		
-
 		
 		Staff staff = new Staff(id,name, (gender.equals("Male"))?1:0, uni,room,1);
 		ArrayList<Staff> staffs = db.getList("");

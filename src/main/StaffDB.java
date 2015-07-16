@@ -16,6 +16,10 @@ public class StaffDB {
 	private ArrayList<Staff> staffs;
 	private Staff staff;
 	
+	/**
+	 * Default Constructor Getting First Connection
+	 * @throws Exception
+	 */
 	public StaffDB() throws Exception{
 		InitialContext init = new InitialContext();
 		DataSource ds = (DataSource) init.lookup("java:comp/env/theajaxdb");
@@ -23,6 +27,12 @@ public class StaffDB {
 		System.out.println("Connection Success!");
 	}
 	
+	/**
+	 * Add Staff Record to Database
+	 * @param staff : Staff Object
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean addStaff(Staff staff) throws SQLException{
 		String sql = "INSERT INTO hrd_students(stu_id, stu_name, stu_gender, stu_university, stu_class)"
 				+ " VALUES(?,?,?,?,?);";
@@ -316,7 +326,12 @@ public class StaffDB {
 		}
 	}
 	
-	
+	/**
+	 * Retrieve One Record Staff Info from Database
+	 * @param id : Retrieve By Id
+	 * @return
+	 * @throws SQLException
+	 */
 	public ArrayList<Staff> getStaff(String id) throws SQLException{
 		String sql = "SELECT * FROM hrd_students WHERE stu_id = ?;";
 		pstmt = con.prepareStatement(sql);
@@ -348,6 +363,16 @@ public class StaffDB {
 		}
 	}
 	
+	/**
+	 * Update Staff Info to Database
+	 * @param id : update id
+	 * @param name : update name
+	 * @param gender : update gender
+	 * @param uni : update university
+	 * @param room : update room
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean udpateStaff(String id, String name, int gender, String uni, String room) throws SQLException{
 		
 		String sql = "UPDATE hrd_students "
@@ -376,6 +401,12 @@ public class StaffDB {
 		return false;
 	}
 	
+	/**
+	 * Delete One Record Staff Info from Database
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean deleteStaff(String id) throws SQLException{
 		String sql = "DELETE FROM hrd_students WHERE stu_id = ?;";
 		pstmt = con.prepareStatement(sql);

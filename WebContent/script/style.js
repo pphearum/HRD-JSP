@@ -10,14 +10,17 @@ $(document).ready(function() {
     /* Retrieve Class Name From Database */
     setSelectRoom();
 
+    /* Filter by Room Combo */    
 	$('#room').change(function() {
 		classFilter();
 	});
 
+	/* Filter by Status Combo */
 	$('#status').change(function() {
 		statusFilter();
 	});
 
+	/* Filter by Search Name */
 	$('#search input').keyup(function() {
 		search();
 	}); 
@@ -26,8 +29,13 @@ $(document).ready(function() {
     $('#updateModal').on('hidden.bs.modal', function (e) {
            resetModal();
     }); 
+    
+    
 });
 
+/**
+ * Add New Staff Record
+ */
 function addstaff(){
     resetModal();
     help = true;
@@ -36,6 +44,11 @@ function addstaff(){
     $('#modal_id').attr('disabled',false);
 }
 
+/**
+ * Add and Update Staff Info
+ * help = false : Add Staff
+ * help = true	: Update Staff
+ */
 function addOrUpdate(){
 	var id = $('#modal_id').val();
     var name = $('#modal_name').val();
@@ -64,8 +77,13 @@ function addOrUpdate(){
             
             $('#validId').addClass('has-error has-feedback');
             $('#validId .glyphicon').addClass('glyphicon-remove');
+        }else if(id!="" && name!="" && $.isNumeric(id) && name.length>20){
+            $('#errMsg').text('Name too long !');
+            
+            $('#validName').addClass('has-error has-feedback');
+            $('#validName .glyphicon').addClass('glyphicon-remove')
         }else{
-           addStaff();     
+           addStaff(); 
         }
     }else{
         updateStaff();
@@ -95,9 +113,11 @@ function getList() {
 }
 
 
-/*  Manage data to table and style it
-    Return String as table tage with data
-*/
+/**
+ * Manage data to table and style it 
+ * @param data
+ * @returns {String} : as table tag with data
+ */
 function listDetail(data) {
 	var str = "";
 	for (var i = 0; i < data.length; i++) {
@@ -118,19 +138,23 @@ function listDetail(data) {
 }
 
 
-/*  
-    Set Gender Male or Female to table (1:Males, 0:Female)
-    Return String as Male or Female
-*/
+/**
+ * Set Gender Male or Female to Table 
+ * 		1 : Males
+ * 		0 : Female
+ * @param gender
+ * @returns : String as Male or Female
+ */
 function setGender(gender) {
 	return (gender == 1) ? "Male" : "Female";
 }
 
 
-/*
-    Set Status Active or Drop
-    Return String as location and image name
-*/
+/**
+ * Set Status Active or Drop  
+ * @param status
+ * @returns : String as Location and Image Name
+ */
 function setStatus(status) {
 	return (status == 1) ? "img/check.png" : "img/uncheck.png";
 }
@@ -231,6 +255,9 @@ function setSelectRoom() {
 	});
 }
 
+/**
+ * Get All Id From Control In Modal
+ */
 function getModalId(){
      id = $('#modal_id').val();
      name = $('#modal_name').val();
@@ -285,7 +312,7 @@ function resetModal(){
     $('#errMsg').text("");
 }
 
-/* Get Staff Detial */
+/* Get Staff Detail */
 function getStaff(id){
     $.post("getstaff.act",{
         id:id
@@ -297,6 +324,10 @@ function getStaff(id){
     });
 }
 
+/**
+ * Add Staff Info to Modal Form
+ * @param data
+ */
 function getDBToModal(data){
     $('#modal_id').val(""+data[0].id+"");
     $('#modal_name').val(""+data[0].name+"");
@@ -307,6 +338,10 @@ function getDBToModal(data){
     $('#modal_id').attr('disabled',true);
 }
 
+/**
+ * Update Staff Info Using Id
+ * @param id
+ */
 function updateStaff(id){
     id = $('#modal_id').val();
      name = $('#modal_name').val();
@@ -326,6 +361,10 @@ function updateStaff(id){
     });
 }
 
+/**
+ * Delete Staff Info Using Id
+ * @param id
+ */
 function deleteStaff(id){
      $.confirm({
             title: 'Delete Confirm!',

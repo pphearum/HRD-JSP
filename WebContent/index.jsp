@@ -4,18 +4,18 @@
         
 <html>
     <head>
+    
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title>Staff and Student Management</title>
         
-        <!-- Jquery libruary -->
+        <!-- JQuery Library -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         
-        <!-- Bootstrap libruary-->
+        <!-- Bootstrap Library-->
         <link href="bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet">
         <script src="bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
         
-        <!-- JS Plugin -->
-
+        <!-- JS Plug In -->
         <script src="craftpip-jquery-confirm-4093790/dist/jquery-confirm.min.js"></script>
         <link href="craftpip-jquery-confirm-4093790/dist/jquery-confirm.min.css" rel="stylesheet" type="text/css">
         <script src="sweetalert-master/dist/sweetalert.min.js"></script>
@@ -23,28 +23,39 @@
         
         <!-- My Style CSS -->
         <link href="style/style.css" type="text/css" rel="stylesheet">
+        
+        <!-- Font Awesome -->
         <link href="font/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,500,700" type="text/css" rel="stylesheet">
         
         <!-- My Script -->
         <script src="script/style.js"></script>
+        
     </head>
     
     <body>
         <div class="container">
+        
             <div class="row">
                 <div class="col-sm-12">
                     <h2 class="text-center"><span>S</span>tudent and <span>S</span>taff <span>M</span>anagement</h2>
                     <div id="filter">
                         <form class="form-inline" role="form">
                             <div class="form-group" id="search">
-                                <label>Search By Name: </label>
-                                <input class="form-control" type="text" value="" id="n" placeholder="Enter name">
+                                <!--<label>Search By Name: </label>-->
+                                
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                                    <input class="form-control" type="text" value="" id="n" placeholder="Enter name">
+                                </div>
+                                
                             </div>
+                            
                             <select class="form-control" id="room">
                                 <option>All Class</option>
                                 <!-- Retrieve Class Name from Database -->
                             </select>
+                            
                             <select class="form-control" id="status">
                                 <option>All Status</option>
                                 <option>Active</option>
@@ -53,6 +64,7 @@
                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#updateModal" onclick="addstaff()">Add New</button>
                         </form> 
                     </div>
+                    
                     <div id="display">
                         <table class="table table-bordered text-center" id="tbstaff">
                             <tr id="header">
@@ -67,8 +79,8 @@
                         </table>
                     </div>
                 </div>  
-                
             </div>
+            
             <!-- Update Modal -->
               <div class="modal fade" id="updateModal" role="dialog">
                 <div class="modal-dialog">
@@ -159,6 +171,8 @@
 
                 </div>
               </div>
+            <!-- End Update Modal -->
+            
         </div>
     </body>
 </html>
