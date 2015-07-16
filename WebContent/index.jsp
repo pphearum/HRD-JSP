@@ -9,7 +9,7 @@
         <title>Staff and Student Management</title>
         
         <!-- JQuery Library -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="jquery-library/jquery-1.11.3.min.js"></script>
         
         <!-- Bootstrap Library-->
         <link href="bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet">
@@ -25,8 +25,7 @@
         <link href="style/style.css" type="text/css" rel="stylesheet">
         
         <!-- Font Awesome -->
-        <link href="font/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="http://fonts.googleapis.com/css?family=Lato:300,400,500,700" type="text/css" rel="stylesheet">
+        <link href="font/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">    
         
         <!-- My Script -->
         <script src="script/style.js"></script>
@@ -42,12 +41,12 @@
                     <div id="filter">
                         <form class="form-inline" role="form">
                             <div class="form-group" id="search">
-                                <!--<label>Search By Name: </label>-->
+                                <label>Search By Name: </label>
                                 
-                                <div class="input-group">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+<!--                                <div class="input-group">-->
+<!--                                    <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>-->
                                     <input class="form-control" type="text" value="" id="n" placeholder="Enter name">
-                                </div>
+<!--                                </div>-->
                                 
                             </div>
                             

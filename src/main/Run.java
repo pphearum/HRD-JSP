@@ -158,7 +158,7 @@ public class Run extends HttpServlet{
 		for(int i=0;i<staffs.size();i++){
 			staffid.add(staffs.get(i).getId());
 		}
-		
+			
 		if(staffid.contains(id)){
 			resp.getWriter().write("x");
 		}else{

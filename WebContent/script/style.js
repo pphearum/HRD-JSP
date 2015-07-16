@@ -68,11 +68,12 @@ function addOrUpdate(){
             
         }else if(id!="" && name==""){
             $('#validName').addClass('has-error has-feedback');
-            $('#validName .glyphicon').addClass('glyphicon-remove')
+            $('#validName .glyphicon').addClass('glyphicon-remove');
             
             $('#validId').removeClass('has-error has-feedback');
             $('#validId .glyphicon').removeClass('glyphicon-remove');
-        }else if(id!="" && name!="" && !$.isNumeric(id)){
+        }
+        else if(id!="" && name!="" && !$.isNumeric(id)){
             $('#errMsg').text('Enter Number Only !');
             
             $('#validId').addClass('has-error has-feedback');
@@ -86,8 +87,17 @@ function addOrUpdate(){
            addStaff(); 
         }
     }else{
-        updateStaff();
-        $('#updateModal').modal('hide');
+        if(name==""){
+            $('#validName').addClass('has-error has-feedback');
+            $('#validName .glyphicon').addClass('glyphicon-remove');
+        }else if(name!="" && name.length>20){
+            $('#errMsg').text('Name too long !');
+            $('#validName').addClass('has-error has-feedback');
+            $('#validName .glyphicon').addClass('glyphicon-remove');
+        }else{    
+            updateStaff();
+            $('#updateModal').modal('hide');
+        }
     }  
 }
 
